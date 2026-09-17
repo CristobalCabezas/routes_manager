@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_16_014441) do
+ActiveRecord::Schema[8.1].define(version: 2026_09_17_010556) do
+  create_table "delivery_orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "code", null: false
+    t.datetime "created_at", null: false
+    t.string "destination_address", null: false
+    t.date "scheduled_date", null: false
+    t.integer "status", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "weight_kg", precision: 10, null: false
+    t.index ["code"], name: "index_delivery_orders_on_code", unique: true
+  end
+
   create_table "vehicles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.decimal "capacity_kg", precision: 10, null: false
     t.datetime "created_at", null: false

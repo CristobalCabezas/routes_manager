@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: AS123456
+  weight_kg: 100
+  destination_address: Mi Casa 123
+  status: 0
+  scheduled_date: 2026-10-16
+
+two:
+  code: EVZI8WICWL
+  weight_kg: 85
+  destination_address: Su Casa 456
+  status: 1
+  scheduled_date: 2026-11-16

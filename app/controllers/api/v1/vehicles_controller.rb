@@ -1,6 +1,16 @@
+require "active_support/core_ext/string/inflections"
+
 class Api::V1::VehiclesController < ApplicationController
   def index
     vehicles = Vehicle.all
+    if params[:status]
+      vehicles = vehicles.where(status: params[:status])
+    end
+    if vehicles.empty?
+      render json: { error: "not_found", message: "No vehicles found" }, status: :not_found
+      return
+    end
+
     render json: vehicles
   end
 
@@ -14,7 +24,7 @@ class Api::V1::VehiclesController < ApplicationController
         render json: { error: 'validation_error', message: errors }, status: :unprocessable_entity
       end
     rescue StandardError => e
-      render json: { error: e.class.name, message: e.message }, status: :internal_server_error
+      render json: { error: e.class.name.underscore, message: e.message }, status: :internal_server_error
     end
   end
 
